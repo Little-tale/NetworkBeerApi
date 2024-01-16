@@ -12,16 +12,24 @@ import Alamofire // 서버랑 대화 Response
 
 let xib = UINib(nibName: BeerCollectionViewCell.identi, bundle: nil)
 
-
+let beermodel = BeerModel()
 
 class BeerListViewController: UIViewController {
     @IBOutlet var titleLabel : UILabel!
     @IBOutlet var beerListCollectionView : UICollectionView!
     
-    var beerList: [BeerElemet] = []
+    var beerList: [Beer] = [] {
+        didSet{
+            beerListCollectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        beermodel.request { beers in
+            self.beerList = beers
+        }
         
         beerListCollectionView.delegate = self
         beerListCollectionView.dataSource = self
@@ -29,33 +37,13 @@ class BeerListViewController: UIViewController {
         beerListCollectionView.register(xib, forCellWithReuseIdentifier: BeerCollectionViewCell.identi)
 
         setLayOut(CollectionView: beerListCollectionView)
-        for i in 0...10 {
-            setResponse()
-        }
+       
         
         titleLabel.text = "맥주리스트"
         titleLabel.textAlignment = .center
         titleLabel.font = .systemFont(ofSize: 24)
     }
 }
-
-extension BeerListViewController {
-    func setResponse() {
-        
-        let url = "https://api.punkapi.com/v2/beers/random"
-        AF.request(url, method: .get).responseDecodable(of: [BeerElemet].self) { response in
-            switch response.result {
-            case .success(let success):
-                self.beerList.append(contentsOf: success)
-                self.beerListCollectionView.reloadData()
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-        
-    }
-}
-
 
 
 extension BeerListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -64,25 +52,15 @@ extension BeerListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // setResponse()
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BeerCollectionViewCell.identi, for: indexPath) as! BeerCollectionViewCell
-       
-//        guard let urlSemple = beerList.popLast()?.image_url else {
-//            return cell
-//        }
-//        let url = URL(string: urlSemple)
-//       
-//        cell.beerImageView.kf.setImage(with: url)
-        // 만약 인덱스 패스 행 < 맥주리스트 갯수
-        if indexPath.row < beerList.count {
-            let beer = beerList[indexPath.row]
-            if let imageURL = URL(string: beer.image_url) {
-                cell.beerImageView.kf.setImage(with: imageURL)
-            }
-            cell.beerNameTextField.text = beer.name
-            cell.beerSubTextField.text = beer.description
-        }
+        
+        let url = URL(string: beerList[indexPath.row].image_url)
+        
+        cell.beerImageView.kf.setImage(with: url)
+        
+        cell.beerNameTextField.text = beerList[indexPath.row].name
+        cell.beerSubTextField.text =  beerList[indexPath.row].description
         return cell
     }
     
