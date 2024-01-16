@@ -12,9 +12,13 @@ import Alamofire // 서버랑 대화 Response
 
 let xib = UINib(nibName: BeerCollectionViewCell.identi, bundle: nil)
 
+
+
 class BeerListViewController: UIViewController {
     @IBOutlet var titleLabel : UILabel!
     @IBOutlet var beerListCollectionView : UICollectionView!
+    
+    var beerList: [BeerElemet] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +29,30 @@ class BeerListViewController: UIViewController {
         beerListCollectionView.register(xib, forCellWithReuseIdentifier: BeerCollectionViewCell.identi)
 
         setLayOut(CollectionView: beerListCollectionView)
-        
-        
-        
+        setResponse()
     }
 
 
 }
+
+extension BeerListViewController {
+    func setResponse() {
+        
+        let url = "https://api.punkapi.com/v2/beers/random"
+        AF.request(url, method: .get).responseDecodable(of: [BeerElemet].self) { response in
+            switch response.result {
+            case .success(let success):
+                self.beerList.append(contentsOf: success)
+                self.beerListCollectionView.reloadData()
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
+    }
+}
+
+
 
 extension BeerListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -39,7 +60,15 @@ extension BeerListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        setResponse()
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BeerCollectionViewCell.identi, for: indexPath) as! BeerCollectionViewCell
+        var url: URL?
+        
+        if let imageURL = beerList.first?.image_url {
+            url = URL(string: imageURL)!
+        }
+        cell.beerImageView.kf.setImage(with: url)
         
         return cell
     }
