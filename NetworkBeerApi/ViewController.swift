@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import WebKit
+import Kingfisher
 /*
  NetworkBeerApi.BeerElemet
    - name: "Mango And Chili Barley Wine"
@@ -22,7 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet var beerNameLabel: UILabel!
     @IBOutlet var beerDetailLabel: UILabel!
     @IBOutlet var recommendButton: UIButton!
-    @IBOutlet var webView: WKWebView!
+    @IBOutlet var beerImgeView: UIImageView!
+    
     
     // var test: beerElement
     
@@ -34,6 +36,9 @@ class ViewController: UIViewController {
         request()
     }
     
+    @IBAction func randomButtonAct(_ sender: UIButton) {
+        request()
+    }
 }
 
 
@@ -50,7 +55,7 @@ extension ViewController {
                     self.beerDetailLabel.text = test.description
                     if let url = URL(string: test.image_url) {
                         let request = URLRequest(url: url)
-                        self.webView.load(request)
+                        self.beerImgeView.kf.setImage(with: url)
                     }
                 }
                 
