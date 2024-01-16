@@ -13,6 +13,8 @@
 		7BDCA08F2B5682B4002DC385 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BDCA08D2B5682B4002DC385 /* Main.storyboard */; };
 		7BDCA0912B5682B6002DC385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BDCA0902B5682B6002DC385 /* Assets.xcassets */; };
 		7BDCA0942B5682B6002DC385 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BDCA0922B5682B6002DC385 /* LaunchScreen.storyboard */; };
+		7BDCA09D2B5684CB002DC385 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7BDCA09C2B5684CB002DC385 /* Alamofire */; };
+		7BDCA09F2B568502002DC385 /* BeerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCA09E2B568502002DC385 /* BeerApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,7 @@
 		7BDCA0902B5682B6002DC385 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BDCA0932B5682B6002DC385 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BDCA0952B5682B6002DC385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BDCA09E2B568502002DC385 /* BeerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDCA09D2B5684CB002DC385 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +67,7 @@
 				7BDCA0902B5682B6002DC385 /* Assets.xcassets */,
 				7BDCA0922B5682B6002DC385 /* LaunchScreen.storyboard */,
 				7BDCA0952B5682B6002DC385 /* Info.plist */,
+				7BDCA09E2B568502002DC385 /* BeerApi.swift */,
 			);
 			path = NetworkBeerApi;
 			sourceTree = "<group>";
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = NetworkBeerApi;
+			packageProductDependencies = (
+				7BDCA09C2B5684CB002DC385 /* Alamofire */,
+			);
 			productName = NetworkBeerApi;
 			productReference = 7BDCA0842B5682B4002DC385 /* NetworkBeerApi.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 7BDCA07B2B5682B4002DC385;
+			packageReferences = (
+				7BDCA09B2B5684CB002DC385 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 7BDCA0852B5682B4002DC385 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BDCA09F2B568502002DC385 /* BeerApi.swift in Sources */,
 				7BDCA08C2B5682B4002DC385 /* ViewController.swift in Sources */,
 				7BDCA0882B5682B4002DC385 /* AppDelegate.swift in Sources */,
 				7BDCA08A2B5682B4002DC385 /* SceneDelegate.swift in Sources */,
@@ -307,9 +319,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SilverGun.NetworkBeerApi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -335,9 +350,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.SilverGun.NetworkBeerApi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -363,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7BDCA09B2B5684CB002DC385 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7BDCA09C2B5684CB002DC385 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BDCA09B2B5684CB002DC385 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7BDCA07C2B5682B4002DC385 /* Project object */;
 }
