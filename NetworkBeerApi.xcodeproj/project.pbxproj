@@ -20,6 +20,7 @@
 		7BDCA0A72B56A2E5002DC385 /* BeerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCA0A52B56A2E5002DC385 /* BeerCollectionViewCell.swift */; };
 		7BDCA0A82B56A2E5002DC385 /* BeerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BDCA0A62B56A2E5002DC385 /* BeerCollectionViewCell.xib */; };
 		7BDCA0AA2B56A414002DC385 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCA0A92B56A414002DC385 /* Identifier.swift */; };
+		7BDCA0B62B56F46A002DC385 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDCA0B52B56F469002DC385 /* ModelManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		7BDCA0A52B56A2E5002DC385 /* BeerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerCollectionViewCell.swift; sourceTree = "<group>"; };
 		7BDCA0A62B56A2E5002DC385 /* BeerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeerCollectionViewCell.xib; sourceTree = "<group>"; };
 		7BDCA0A92B56A414002DC385 /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		7BDCA0B52B56F469002DC385 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				7BDCA0A52B56A2E5002DC385 /* BeerCollectionViewCell.swift */,
 				7BDCA0A62B56A2E5002DC385 /* BeerCollectionViewCell.xib */,
 				7BDCA0A92B56A414002DC385 /* Identifier.swift */,
+				7BDCA0B52B56F469002DC385 /* ModelManager.swift */,
 			);
 			path = NetworkBeerApi;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BDCA09F2B568502002DC385 /* BeerApi.swift in Sources */,
+				7BDCA0B62B56F46A002DC385 /* ModelManager.swift in Sources */,
 				7BDCA08C2B5682B4002DC385 /* ViewController.swift in Sources */,
 				7BDCA0A72B56A2E5002DC385 /* BeerCollectionViewCell.swift in Sources */,
 				7BDCA0AA2B56A414002DC385 /* Identifier.swift in Sources */,
