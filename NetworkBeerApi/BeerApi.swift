@@ -7,8 +7,10 @@
 
 import UIKit
 
-struct beerElement: Codable {
+
+struct BeerElemet: Codable {
     let name: String
-    let imageURL: String
+    let image_url: String
     let description: String
+
 }

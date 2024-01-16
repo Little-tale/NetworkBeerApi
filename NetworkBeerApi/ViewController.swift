@@ -7,20 +7,30 @@
 
 import UIKit
 import Alamofire
+import WebKit
+/*
+ NetworkBeerApi.BeerElemet
+   - name: "Mango And Chili Barley Wine"
+   - imageURL: "https://images.punkapi.com/v2/keg.png"
+   - description: "A huge, chewy barley wine, loaded with bitterness and balanced with a sweet and spicy combo of
+ */
+
 
 // https://api.punkapi.com/v2/beers/random
 class ViewController: UIViewController {
     @IBOutlet var recommendLabel: UILabel!
-    @IBOutlet var beerImageView: UIImageView!
     @IBOutlet var beerNameLabel: UILabel!
     @IBOutlet var beerDetailLabel: UILabel!
     @IBOutlet var recommendButton: UIButton!
+    @IBOutlet var webView: WKWebView!
     
     // var test: beerElement
     
+    var beer: [BeerElemet] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       design()
+        design()
         request()
     }
     
@@ -30,21 +40,26 @@ class ViewController: UIViewController {
 extension ViewController {
     func request() {
         let url = "https://api.punkapi.com/v2/beers/random"
-        
-        AF.request(url, method: .get).responseDecodable(of: beerElement.self ) {
-            response in
+        // default : .get, statusCode: 200...299 // 500~서버오류
+        AF.request(url, method: .get).responseDecodable(of: [BeerElemet].self ) { response in
             switch response.result {
             case .success(let success):
-                print(success.name)
-                print(success.imageURL)
-                print(success.description)
+                if let test = success.first{
+                    print("asdasd")
+                    self.beerNameLabel.text = test.name
+                    self.beerDetailLabel.text = test.description
+                    if let url = URL(string: test.image_url) {
+                        let request = URLRequest(url: url)
+                        self.webView.load(request)
+                    }
+                }
+                
             case .failure(let failure):
                 print(failure)
             }
         }
     }
 }
-
 
 
 
