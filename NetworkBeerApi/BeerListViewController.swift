@@ -29,10 +29,14 @@ class BeerListViewController: UIViewController {
         beerListCollectionView.register(xib, forCellWithReuseIdentifier: BeerCollectionViewCell.identi)
 
         setLayOut(CollectionView: beerListCollectionView)
-        setResponse()
+        for i in 0...10 {
+            setResponse()
+        }
+        
+        titleLabel.text = "맥주리스트"
+        titleLabel.textAlignment = .center
+        titleLabel.font = .systemFont(ofSize: 24)
     }
-
-
 }
 
 extension BeerListViewController {
@@ -56,20 +60,29 @@ extension BeerListViewController {
 
 extension BeerListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return beerList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        setResponse()
+        // setResponse()
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BeerCollectionViewCell.identi, for: indexPath) as! BeerCollectionViewCell
-        var url: URL?
-        
-        if let imageURL = beerList.first?.image_url {
-            url = URL(string: imageURL)!
+       
+//        guard let urlSemple = beerList.popLast()?.image_url else {
+//            return cell
+//        }
+//        let url = URL(string: urlSemple)
+//       
+//        cell.beerImageView.kf.setImage(with: url)
+        // 만약 인덱스 패스 행 < 맥주리스트 갯수
+        if indexPath.row < beerList.count {
+            let beer = beerList[indexPath.row]
+            if let imageURL = URL(string: beer.image_url) {
+                cell.beerImageView.kf.setImage(with: imageURL)
+            }
+            cell.beerNameTextField.text = beer.name
+            cell.beerSubTextField.text = beer.description
         }
-        cell.beerImageView.kf.setImage(with: url)
-        
         return cell
     }
     

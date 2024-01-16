@@ -15,6 +15,8 @@ class BeerCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        
+        beerSubTextField.font = .systemFont(ofSize: 8)
     }
 
 }
